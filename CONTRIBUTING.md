@@ -51,7 +51,7 @@ Windows:
 
 Run a specific test:
 ```bash
-./gradlew testDevDebugUnitTest --tests "com.music.bitchord.playback.audio.DirectAudioStreamingRegressionTest"
+./gradlew testDevDebugUnitTest --tests "com.hamraj37.laya.playback.audio.DirectAudioStreamingRegressionTest"
 ```
 
 ## Code Quality

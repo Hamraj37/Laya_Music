@@ -1,4 +1,4 @@
-package com.music.bitchord.ui.preview
+package com.hamraj37.laya.ui.preview
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -24,16 +24,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.music.bitchord.data.model.Song
-import com.music.bitchord.ui.components.BottomFadeScrim
-import com.music.bitchord.ui.components.BottomTab
-import com.music.bitchord.ui.components.FloatingBottomBar
-import com.music.bitchord.ui.components.FrostedTopBar
-import com.music.bitchord.ui.components.MiniPlayer
-import com.music.bitchord.ui.components.TopFadeBlur
-import com.music.bitchord.ui.components.TopBarBlur
-import com.music.bitchord.ui.icons.BitChordIcons
-import com.music.bitchord.ui.theme.BitChordTheme
+import com.hamraj37.laya.data.model.Song
+import com.hamraj37.laya.ui.components.BottomFadeScrim
+import com.hamraj37.laya.ui.components.BottomTab
+import com.hamraj37.laya.ui.components.FloatingBottomBar
+import com.hamraj37.laya.ui.components.FrostedTopBar
+import com.hamraj37.laya.ui.components.MiniPlayer
+import com.hamraj37.laya.ui.components.TopFadeBlur
+import com.hamraj37.laya.ui.components.TopBarBlur
+import com.hamraj37.laya.ui.icons.BitChordIcons
+import com.hamraj37.laya.ui.theme.BitChordTheme
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeSource
 
@@ -116,7 +116,7 @@ private val PreviewTabs = listOf(
 )
 
 /**
- * The whole chrome stack in the order [com.music.bitchord.MainActivity] draws
+ * The whole chrome stack in the order [com.hamraj37.laya.MainActivity] draws
  * it: feed, bounded top blur, bar, bottom scrim, pill.
  */
 @Composable

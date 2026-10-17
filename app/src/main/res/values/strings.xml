@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BitChord</string>
+    <string name="app_name">Laya</string>
     <string name="playback_channel_name">Now playing</string>
     <string name="download_channel_name">Downloads</string>
     <string name="download_channel_description">Songs being saved to your Music folder</string>
@@ -1204,4 +1204,116 @@
     <string name="wear_os_code_hint">Pairing code</string>
     <string name="wear_os_done">Done</string>
     <string name="signed_by">Signed by %1$s</string>
+    <string name="search_library_hint" translatable="false">Songs, Artists and Albums</string>
+    <string name="search_addons_hint" translatable="false">Search your addons</string>
+    <string name="search_library_empty" translatable="false">Search the songs in your Local Music folder.</string>
+    <string name="search_addons_empty" translatable="false">Search every enabled addon at once. Tracks play straight from the addon.</string>
+    <string name="search_addons_no_results" translatable="false">No addon has “%1$s”.</string>
+    <string name="search_library_no_results" translatable="false">Nothing in Local Music matches “%1$s”.</string>
+    <string name="sign_in_with_google" translatable="false">Sign in with Google</string>
+    <string name="hi_res_lossless" translatable="false">Hi-Res Lossless</string>
+    <string name="high_quality" translatable="false">High quality</string>
+    <string name="wired_headphones" translatable="false">Wired headphones</string>
+    <string name="usb_audio" translatable="false">USB audio</string>
+    <string name="hdmi_output" translatable="false">HDMI</string>
+    <string name="personal_phone" translatable="false">%1$s’s Phone</string>
+    <string name="this_phone" translatable="false">This phone</string>
+    <string name="audio_output" translatable="false">Audio output</string>
+    <string name="audio_output_playing" translatable="false">Playing here</string>
+    <string name="cast" translatable="false">Cast</string>
+    <string name="cast_casting" translatable="false">Casting</string>
+    <string name="cast_connecting" translatable="false">Connecting…</string>
+    <string name="cast_row_subtitle" translatable="false">Chromecast and Google Cast speakers</string>
+    <string name="watch_output" translatable="false">Watch</string>
+    <string name="watch_output_subtitle" translatable="false">Play on your watch’s speaker or headphones</string>
+    <string name="listen_together_manage" translatable="false">Manage</string>
+    <string name="lyrics_offset_description" translatable="false">Positive values show lyrics later</string>
+    <string name="decrease_lyrics_offset" translatable="false">Decrease lyrics offset</string>
+    <string name="increase_lyrics_offset" translatable="false">Increase lyrics offset</string>
+    <string name="lyrics_offset_reset" translatable="false">Reset</string>
+    <string name="choose_lyrics_provider" translatable="false">Choose lyrics provider</string>
+    <string name="lyrics_provider_current" translatable="false">Current provider</string>
+    <string name="lyrics_provider_found" translatable="false">Lyrics found · Tap to use</string>
+    <string name="lyrics_provider_not_found" translatable="false">Lyrics not found</string>
+    <string name="lyrics_provider_fetching" translatable="false">Fetching lyrics…</string>
+    <string name="lyrics_provider_not_fetched" translatable="false">Tap to fetch</string>
+    <string name="lyrics_share_pick_limit" translatable="false">Card is full</string>
+    <string-array name="lyrics_intro_lines" translatable="false">
+        <item>The beat is landing</item>
+        <item>The song is starting</item>
+        <item>Warming up</item>
+        <item>Setting the mood</item>
+        <item>Bass first, words later</item>
+        <item>Wait for it</item>
+        <item>Feel that build</item>
+        <item>Just the groove for now</item>
+        <item>The hook is on the way</item>
+        <item>Let it breathe</item>
+        <item>Cue the vocals</item>
+        <item>First notes in</item>
+    </string-array>
+    <string-array name="lyrics_loading_lines" translatable="false">
+        <item>Getting the lyrics</item>
+        <item>Finding the words</item>
+        <item>Fetching the verses</item>
+        <item>Lyrics are loading</item>
+        <item>Checking the lyric sheet</item>
+        <item>Searching the songbook</item>
+        <item>Lining up the lyrics</item>
+        <item>Words are on the way</item>
+        <item>Checking the archives</item>
+        <item>Finding the right words</item>
+        <item>Lyrics are coming together</item>
+        <item>Almost found the words</item>
+    </string-array>
+    <string name="lyrics_not_available" translatable="false">Lyrics not available</string>
+    <string name="played_by" translatable="false">Played by %1$s</string>
+    <string name="playing_radio" translatable="false">Playing %1$s Radio</string>
+    <string name="playing_from" translatable="false">Playing from %1$s</string>
+    <string name="automix_analysis_status" translatable="false">Automix · this song: %1$s · next: %2$s</string>
+    <string name="automix_not_supported_video" translatable="false">Automix not supported on video songs</string>
+    <string name="automix_stopped_in_party" translatable="false">Automix: stopped in listen together</string>
+    <string name="listen_together_jam" translatable="false">%1$s’s Jam</string>
+    <string name="listen_together_jam_unnamed" translatable="false">Listening together</string>
+    <string name="upgrading_quality" translatable="false">Upgrading quality</string>
+    <string name="bit_depth" translatable="false">%1$d-bit</string>
+    <string name="channel_count" translatable="false">%1$d ch</string>
+    <string name="analysis_complete" translatable="false">analysed</string>
+    <string name="analysis_refining" translatable="false">analysed, refining…</string>
+    <string name="analysis_in_progress" translatable="false">analysing…</string>
+    <string name="waiting" translatable="false">waiting</string>
+    <string name="mixing" translatable="false">Mixing</string>
+    <string name="close_lyrics" translatable="false">Close lyrics</string>
+    <string name="open_lyrics" translatable="false">Lyrics</string>
+    <string name="repeat_one" translatable="false">Repeat one</string>
+    <string name="repeat_all" translatable="false">Repeat all</string>
+    <string name="repeat_off" translatable="false">Repeat off</string>
+    <string name="autoplay_on" translatable="false">AutoPlay on</string>
+    <string name="autoplay_off" translatable="false">AutoPlay off</string>
+    <string name="up_next" translatable="false">Up next</string>
+    <string name="listen_together_open_count" translatable="false">Listening together · %1$d</string>
+    <string name="listen_together_open" translatable="false">Listen together</string>
+    <string name="instrumental" translatable="false">Instrumental</string>
+    <string name="show_original_lyrics" translatable="false">Show original lyrics</string>
+    <string name="translate_lyrics" translatable="false">Translate lyrics</string>
+    <string name="romanize_lyrics" translatable="false">Romanize lyrics</string>
+    <string name="no_lyrics_for_track" translatable="false">No lyrics for this track</string>
+    <string name="lyrics_already_in_language" translatable="false">These lyrics are already in %1$s</string>
+    <string name="lyrics_translation_unavailable" translatable="false">Translation is unavailable right now</string>
+    <string name="lyrics_already_romanized" translatable="false">These lyrics already use Latin characters</string>
+    <string name="lyrics_romanization_unavailable" translatable="false">Romanization is unavailable for these lyrics</string>
+    <string name="translating_lyrics_to" translatable="false">Translating to %1$s…</string>
+    <string name="romanizing_lyrics" translatable="false">Romanizing lyrics…</string>
+    <string name="lyrics_translated_to" translatable="false">Translated to %1$s</string>
+    <string name="lyrics_romanized" translatable="false">Romanized pronunciation</string>
+    <string name="lyrics_by" translatable="false">Lyrics by %1$s</string>
+    <string name="no_lyrics_found" translatable="false">No lyrics found</string>
+    <string name="lyrics_saved_with_download" translatable="false">Lyrics saved with this download</string>
+    <string name="previously_played" translatable="false">Previously played</string>
+    <string name="next_in_queue" translatable="false">Next in queue</string>
+    <string name="next_from" translatable="false">Next from: %1$s</string>
+    <string name="autoplay_queue_description" translatable="false">Similar music, selected to play next</string>
+    <string name="autoplay_empty_description" translatable="false">Similar music will keep playing</string>
+    <string name="remove_from_queue" translatable="false">Remove from queue</string>
+    <string name="autoplay" translatable="false">AutoPlay</string>
 </resources>
