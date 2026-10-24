@@ -15,5 +15,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Laya"
+rootProject.name = "Laya Music"
 include(":app")
