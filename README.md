@@ -11,9 +11,9 @@
 
 <br/>
 
-[![Latest release](https://img.shields.io/github/v/release/kushagrasinghx/Laya Music?style=for-the-badge&labelColor=0d1117)](https://github.com/kushagrasinghx/Laya Music/releases)
-[![License](https://img.shields.io/github/license/kushagrasinghx/Laya Music?style=for-the-badge&labelColor=0d1117)](https://github.com/kushagrasinghx/Laya Music/blob/main/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/kushagrasinghx/Laya Music/total?style=for-the-badge&labelColor=0d1117)](https://github.com/kushagrasinghx/Laya Music/releases)
+[![Latest release](https://img.shields.io/github/v/release/Hamraj37/Laya_Music?style=for-the-badge&labelColor=0d1117)](https://github.com/Hamraj37/Laya_Music/releases)
+[![License](https://img.shields.io/github/license/Hamraj37/Laya_Music?style=for-the-badge&labelColor=0d1117)](https://github.com/Hamraj37/Laya_Music/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/Hamraj37/Laya_Music/total?style=for-the-badge&labelColor=0d1117)](https://github.com/Hamraj37/Laya_Music/releases)
 [![Listening now](https://api.bitchord.kushagrasingh.in/api/stats/live/badge.svg)](https://api.bitchord.kushagrasingh.in/api/stats/live)
 
 <br/>
@@ -89,10 +89,10 @@
 
 <h1><a id="download"></a>Download</h1>
 
-<a href="https://github.com/kushagrasinghx/Laya Music/releases" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/supported/android/cozy.svg" alt="Download for Android" height="55"/></a>
-<a href="https://github.com/kushagrasinghx/Laya Music/releases" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/supported/windows/cozy.svg" alt="Download for Windows" height="55"/></a>
+<a href="https://github.com/Hamraj37/Laya_Music/releases" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/supported/android/cozy.svg" alt="Download for Android" height="55"/></a>
+<a href="https://github.com/Hamraj37/Laya_Music/releases" target="_blank" rel="noopener noreferrer"><img src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/supported/windows/cozy.svg" alt="Download for Windows" height="55"/></a>
 
-Grab the latest signed APK from the [Releases](https://github.com/kushagrasinghx/Laya Music/releases) page. Sideloading requires enabling "Install unknown apps" for whichever app you download it with.
+Grab the latest signed APK from the [Releases](https://github.com/Hamraj37/Laya_Music/releases) page. Sideloading requires enabling "Install unknown apps" for whichever app you download it with.
 
 For the Windows and Linux desktop app, see [DESKTOP.md](DESKTOP.md).
 

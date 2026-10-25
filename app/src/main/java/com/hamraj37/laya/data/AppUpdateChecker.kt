@@ -43,7 +43,7 @@ object AppUpdateChecker {
     private const val CACHE_SUBDIR = "updates"
 
     private const val LATEST_RELEASE_URL =
-        "https://api.github.com/repos/kushagrasinghx/Laya/releases/latest"
+        "https://api.github.com/repos/Hamraj37/Laya_Music/releases/latest"
 
     private val json = Json { ignoreUnknownKeys = true }
 
