@@ -151,7 +151,6 @@ import com.hamraj37.laya.data.model.SearchHistoryEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.hamraj37.laya.data.model.durationMillis
-import com.hamraj37.laya.data.scrobbling.LastFM
 import com.hamraj37.laya.data.settings.AppSettings
 import com.hamraj37.laya.data.settings.LibrarySort
 import com.hamraj37.laya.data.settings.ThemeMode
@@ -241,7 +240,6 @@ import com.hamraj37.laya.ui.components.FloatingBottomBar
 import com.hamraj37.laya.ui.components.GlassNavBar
 import com.hamraj37.laya.ui.components.floatingtabbar.rememberFloatingTabBarScrollConnection
 import com.hamraj37.laya.ui.components.FrostedTopBar
-import com.hamraj37.laya.ui.components.LastfmLoginAlert
 import com.hamraj37.laya.ui.components.LocalAppBackdrop
 import com.hamraj37.laya.ui.components.LocalLiquidGlassEnabled
 import com.hamraj37.laya.ui.components.backdrop.backdrops.LayerBackdrop
@@ -596,7 +594,6 @@ private fun LayaApp(
     var showTranslationLanguage by remember { mutableStateOf(false) }
     var showAccountSelector by remember { mutableStateOf(false) }
     var showListenBrainzLogin by remember { mutableStateOf(false) }
-    var showLastfmLogin by remember { mutableStateOf(false) }
     var showWebDavEditor by remember { mutableStateOf(false) }
     var showSmbEditor by remember { mutableStateOf(false) }
     /**
@@ -2586,7 +2583,6 @@ private fun LayaApp(
         }
         BackHandler(enabled = showUpdateDialog) { showUpdateDialog = false }
         BackHandler(enabled = showListenBrainzLogin) { showListenBrainzLogin = false }
-        BackHandler(enabled = showLastfmLogin) { showLastfmLogin = false }
         BackHandler(enabled = discordDialog != null) { discordDialog = null }
         BackHandler(enabled = editingSource != null) { editingSource = null }
         BackHandler(enabled = editingPartyServer) { editingPartyServer = false }
@@ -2816,7 +2812,6 @@ private fun LayaApp(
                             },
                             onSignOut = { viewModel.signOut() },
                             onOpenListenBrainzLogin = { showListenBrainzLogin = true },
-                            onOpenLastfmLogin = { showLastfmLogin = true },
                             onOpenDiscord = { showDiscord = true },
                             onOpenSpotify = { showSpotify = true },
                             contentPadding = listPadding,
@@ -3401,7 +3396,6 @@ private fun LayaApp(
                                 },
                                 onSignOut = { viewModel.signOut() },
                                 onOpenListenBrainzLogin = { showListenBrainzLogin = true },
-                                onOpenLastfmLogin = { showLastfmLogin = true },
                                 onOpenDiscord = { showDiscord = true },
                                 onOpenSpotify = { showSpotify = true },
                                 contentPadding = listPadding,
@@ -5142,48 +5136,6 @@ private fun LayaApp(
             )
         }
 
-        if (showLastfmLogin) {
-            var usernameInput by remember { mutableStateOf("") }
-            var passwordInput by remember { mutableStateOf("") }
-            var lastfmError by remember { mutableStateOf<String?>(null) }
-            var lastfmLoading by remember { mutableStateOf(false) }
-            LastfmLoginAlert(
-                hazeState = hazeState,
-                usernameInput = usernameInput,
-                onUsernameInputChange = { usernameInput = it },
-                passwordInput = passwordInput,
-                onPasswordInputChange = { passwordInput = it },
-                error = lastfmError,
-                loading = lastfmLoading,
-                onSignIn = {
-                    lastfmLoading = true
-                    lastfmError = null
-                    scope.launch {
-                        try {
-                            LastFM.initialize(
-                                apiKey = AppSettings.lastfmApiKey.value,
-                                secret = AppSettings.lastfmSecret.value,
-                            )
-                            LastFM.getMobileSession(usernameInput.trim(), passwordInput)
-                                .onSuccess { auth ->
-                                    AppSettings.setLastfmSessionKey(auth.session.key)
-                                    AppSettings.setLastfmUsername(auth.session.name)
-                                    AppSettings.setLastfmEnabled(true)
-                                    showLastfmLogin = false
-                                }
-                                .onFailure { e ->
-                                    lastfmError = e.message ?: context.getString(R.string.login_failed)
-                                }
-                        } catch (e: Exception) {
-                            lastfmError = e.message ?: context.getString(R.string.login_failed)
-                        } finally {
-                            lastfmLoading = false
-                        }
-                    }
-                },
-                onDismiss = { if (!lastfmLoading) showLastfmLogin = false },
-            )
-        }
 
         if (showWebDavEditor) {
             BackHandler { showWebDavEditor = false }

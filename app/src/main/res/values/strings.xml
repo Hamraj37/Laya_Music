@@ -582,9 +582,6 @@
         <item quantity="other">Log copied · %1$d lines</item>
     </plurals>
     <string name="integrate_spotify_canvas">Set up Spotify Canvas</string>
-    <string name="lastfm_login">Last.fm login</string>
-    <string name="lastfm_login_description">Sign in with your Last.fm account to enable scrobbling.</string>
-    <string name="lastfm_now_playing_subtitle">Update Last.fm with what you are listening to</string>
     <string name="scrobble_primary_artist_only">Only scrobble primary artist</string>
     <string name="scrobble_primary_artist_only_subtitle">Use the first artist when a track credits multiple artists</string>
     <string name="lead_with_song">Lead with the song</string>
@@ -639,9 +636,8 @@
     <string name="scrobble_delay_subtitle">How far into a song to scrobble it</string>
     <string name="scrobble_timing">Scrobble timing</string>
     <string name="scrobble_tracks">Scrobble tracks</string>
-    <string name="scrobble_tracks_subtitle">Log plays to your Last.fm timeline</string>
-    <string name="scrobbling_footer">Scrobble your listens to Last.fm and ListenBrainz.</string>
-    <string name="scrobbling_paused_footer">Last.fm and ListenBrainz are paused for this release and will return later. Existing connections remain saved.</string>
+    <string name="scrobbling_footer">Scrobble your listens to ListenBrainz.</string>
+    <string name="scrobbling_paused_footer">Scrobbling is paused for this release and will return later. Existing connections remain saved.</string>
     <string name="search_this_folder">Search this folder</string>
     <string name="search_this_list">Search this list</string>
     <string name="second_button">Second button</string>

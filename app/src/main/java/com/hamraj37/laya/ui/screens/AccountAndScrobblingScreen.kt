@@ -44,21 +44,11 @@ fun AccountAndScrobblingScreen(
     onSwitchChannel: () -> Unit,
     onSignOut: () -> Unit,
     onOpenListenBrainzLogin: () -> Unit,
-    onOpenLastfmLogin: () -> Unit,
     onOpenDiscord: () -> Unit,
     onOpenSpotify: () -> Unit,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
 ) {
-    val lastfmEnabled by AppSettings.lastfmEnabled.collectAsStateWithLifecycle()
-    val lastfmUsername by AppSettings.lastfmUsername.collectAsStateWithLifecycle()
-    val lastfmSessionKey by AppSettings.lastfmSessionKey.collectAsStateWithLifecycle()
-    val lastfmScrobbleEnabled by AppSettings.lastfmScrobbleEnabled.collectAsStateWithLifecycle()
-    val lastfmNowPlayingEnabled by AppSettings.lastfmNowPlaying.collectAsStateWithLifecycle()
-    val lastfmPrimaryArtistOnly by AppSettings.lastfmPrimaryArtistOnly.collectAsStateWithLifecycle()
-    val scrobbleMinDuration by AppSettings.scrobbleMinDuration.collectAsStateWithLifecycle()
-    val scrobbleDelayPercent by AppSettings.scrobbleDelayPercent.collectAsStateWithLifecycle()
-    val scrobbleDelaySeconds by AppSettings.scrobbleDelaySeconds.collectAsStateWithLifecycle()
     val listenBrainzEnabled by AppSettings.listenBrainzEnabled.collectAsStateWithLifecycle()
     val listenBrainzToken by AppSettings.listenBrainzToken.collectAsStateWithLifecycle()
     val listenBrainzPrimaryArtistOnly by AppSettings.listenBrainzPrimaryArtistOnly.collectAsStateWithLifecycle()
@@ -197,133 +187,6 @@ fun AccountAndScrobblingScreen(
                         onClick = { AppSettings.setListenBrainzPrimaryArtistOnly(!listenBrainzPrimaryArtistOnly) },
                     )
                 }
-                RowDivider()
-                SettingsRow(
-                    icon = Icons.Rounded.History,
-                    title = "Last.fm",
-                    subtitle = if (lastfmSessionKey.isNotBlank()) {
-                        stringResource(R.string.signed_in_as, lastfmUsername)
-                    } else {
-                        stringResource(R.string.tap_to_sign_in)
-                    },
-                    trailing = {
-                        Switch(
-                            checked = lastfmEnabled,
-                            onCheckedChange = { checked ->
-                                if (checked && lastfmSessionKey.isBlank()) {
-                                    onOpenLastfmLogin()
-                                } else {
-                                    AppSettings.setLastfmEnabled(checked)
-                                }
-                            },
-                            colors = SwitchDefaults.colors(
-                                checkedTrackColor = MaterialTheme.colorScheme.primary,
-                                checkedBorderColor = MaterialTheme.colorScheme.primary,
-                            ),
-                        )
-                    },
-                    onClick = {
-                        if (lastfmSessionKey.isNotBlank()) {
-                            AppSettings.setLastfmSessionKey("")
-                            AppSettings.setLastfmUsername("")
-                            AppSettings.setLastfmEnabled(false)
-                            AppSettings.setLastfmScrobbleEnabled(false)
-                            AppSettings.setLastfmNowPlaying(false)
-                        } else {
-                            onOpenLastfmLogin()
-                        }
-                    },
-                )
-                if (lastfmEnabled && lastfmSessionKey.isNotBlank()) {
-                    RowDivider()
-                    SettingsRow(
-                        icon = Icons.Rounded.GraphicEq,
-                        title = stringResource(R.string.scrobble_tracks),
-                        subtitle = stringResource(R.string.scrobble_tracks_subtitle),
-                        trailing = {
-                            Switch(
-                                checked = lastfmScrobbleEnabled,
-                                onCheckedChange = AppSettings::setLastfmScrobbleEnabled,
-                                colors = SwitchDefaults.colors(
-                                    checkedTrackColor = MaterialTheme.colorScheme.primary,
-                                    checkedBorderColor = MaterialTheme.colorScheme.primary,
-                                ),
-                            )
-                        },
-                        onClick = { AppSettings.setLastfmScrobbleEnabled(!lastfmScrobbleEnabled) },
-                    )
-                    RowDivider()
-                    SettingsRow(
-                        icon = Icons.Rounded.GraphicEq,
-                        title = stringResource(R.string.scrobble_primary_artist_only),
-                        subtitle = stringResource(R.string.scrobble_primary_artist_only_subtitle),
-                        trailing = {
-                            Switch(
-                                checked = lastfmPrimaryArtistOnly,
-                                onCheckedChange = AppSettings::setLastfmPrimaryArtistOnly,
-                                colors = SwitchDefaults.colors(
-                                    checkedTrackColor = MaterialTheme.colorScheme.primary,
-                                    checkedBorderColor = MaterialTheme.colorScheme.primary,
-                                ),
-                            )
-                        },
-                        onClick = { AppSettings.setLastfmPrimaryArtistOnly(!lastfmPrimaryArtistOnly) },
-                    )
-                    RowDivider()
-                    SettingsRow(
-                        icon = Icons.Rounded.GraphicEq,
-                        title = stringResource(R.string.now_playing),
-                        subtitle = stringResource(R.string.lastfm_now_playing_subtitle),
-                        trailing = {
-                            Switch(
-                                checked = lastfmNowPlayingEnabled,
-                                onCheckedChange = AppSettings::setLastfmNowPlaying,
-                                colors = SwitchDefaults.colors(
-                                    checkedTrackColor = MaterialTheme.colorScheme.primary,
-                                    checkedBorderColor = MaterialTheme.colorScheme.primary,
-                                ),
-                            )
-                        },
-                        onClick = { AppSettings.setLastfmNowPlaying(!lastfmNowPlayingEnabled) },
-                    )
-                }
-            }
-
-            if (lastfmEnabled && lastfmSessionKey.isNotBlank()) {
-                SettingsGroup(header = stringResource(R.string.scrobble_timing)) {
-                    SliderRow(
-                        icon = Icons.Rounded.Tune,
-                        title = stringResource(R.string.min_song_duration),
-                        subtitle = stringResource(R.string.min_song_duration_subtitle),
-                        value = "${scrobbleMinDuration}s",
-                        sliderValue = scrobbleMinDuration.toFloat(),
-                        onSliderValue = { AppSettings.setScrobbleMinDuration(it.roundToInt()) },
-                        valueRange = 15f..120f,
-                        steps = 20,
-                    )
-                    RowDivider()
-                    SliderRow(
-                        icon = Icons.Rounded.Tune,
-                        title = stringResource(R.string.scrobble_delay),
-                        subtitle = stringResource(R.string.scrobble_delay_subtitle),
-                        value = "${(scrobbleDelayPercent * 100).roundToInt()}%",
-                        sliderValue = scrobbleDelayPercent,
-                        onSliderValue = { AppSettings.setScrobbleDelayPercent(it) },
-                        valueRange = 0.1f..1.0f,
-                        steps = 8,
-                    )
-                    RowDivider()
-                    SliderRow(
-                        icon = Icons.Rounded.Tune,
-                        title = stringResource(R.string.max_delay),
-                        subtitle = stringResource(R.string.max_delay_subtitle),
-                        value = "${scrobbleDelaySeconds}s",
-                        sliderValue = scrobbleDelaySeconds.toFloat(),
-                        onSliderValue = { AppSettings.setScrobbleDelaySeconds(it.roundToInt()) },
-                        valueRange = 30f..300f,
-                        steps = 26,
-                    )
-                }
             }
         } else {
             // Left in place rather than dropped: a section that simply vanishes
@@ -336,13 +199,6 @@ fun AccountAndScrobblingScreen(
                 SettingsRow(
                     icon = Icons.Rounded.Cloud,
                     title = "ListenBrainz",
-                    subtitle = stringResource(R.string.back_in_future_version),
-                    enabled = false,
-                )
-                RowDivider()
-                SettingsRow(
-                    icon = Icons.Rounded.History,
-                    title = "Last.fm",
                     subtitle = stringResource(R.string.back_in_future_version),
                     enabled = false,
                 )

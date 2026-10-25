@@ -31,7 +31,6 @@ import com.hamraj37.laya.playback.OriginalVersion
 import com.hamraj37.laya.data.innertube.Innertube
 import com.hamraj37.laya.data.innertube.AndroidStreamHooks
 import com.hamraj37.laya.data.listentogether.ListenTogether
-import com.hamraj37.laya.data.scrobbling.LastFM
 import com.hamraj37.laya.data.settings.AppSettings
 import com.hamraj37.laya.data.settings.SearchHistory
 import com.hamraj37.laya.data.sources.SourceRegistry
@@ -161,8 +160,6 @@ class LayaApplication : Application(), SingletonImageLoader.Factory {
                 loader.diskCache?.clear()
             }
         }
-        // Initialize LastFM with saved settings if available
-        initLastfm()
         // The public "apps open right now" count; see Presence.
         com.hamraj37.laya.data.presence.AndroidPresence.install(this)
         backgroundInit.join()
@@ -233,20 +230,6 @@ class LayaApplication : Application(), SingletonImageLoader.Factory {
             .crossfade(200)
             .build()
 
-    private fun initLastfm() {
-        val sessionKey = AppSettings.lastfmSessionKey.value
-        if (sessionKey.isBlank()) return
-        val endpoint = AppSettings.lastfmEndpoint.value.ifBlank { LastFM.DEFAULT_API_ENDPOINT }
-        val apiKey = AppSettings.lastfmApiKey.value.trim()
-        val secret = AppSettings.lastfmSecret.value.trim()
-        if (apiKey.isBlank() || secret.isBlank()) return
-        LastFM.configure(
-            endpoint = endpoint,
-            apiKey = apiKey,
-            secret = secret,
-            sessionKey = sessionKey,
-        )
-    }
 
     companion object {
         lateinit var authStore: AuthStore

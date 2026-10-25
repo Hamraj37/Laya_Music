@@ -40,16 +40,6 @@ val localProps = Properties().apply {
     val file = rootProject.file("local.properties")
     if (file.exists()) file.inputStream().use { load(it) }
 }
-val lastfmApiKey: String = (
-    localProps.getProperty("LASTFM_API_KEY")
-        ?: System.getenv("LASTFM_API_KEY")
-        ?: ""
-    ).trim()
-val lastfmSecret: String = (
-    localProps.getProperty("LASTFM_SECRET")
-        ?: System.getenv("LASTFM_SECRET")
-        ?: ""
-    ).trim()
 
 /*
  * Where Listen Together's party server lives. Not a credential — it is a public
@@ -88,9 +78,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // Last.fm credentials are supplied locally and never committed.
-        buildConfigField("String", "LASTFM_API_KEY", "\"${lastfmApiKey.replace("\\", "\\\\").replace("\"", "\\\"")}\"")
-        buildConfigField("String", "LASTFM_SECRET", "\"${lastfmSecret.replace("\\", "\\\\").replace("\"", "\\\"")}\"")
         buildConfigField(
             "String",
             "LISTEN_TOGETHER_SERVER",
