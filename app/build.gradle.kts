@@ -1,6 +1,6 @@
 import java.util.Properties
+import java.util.Base64
 import java.security.MessageDigest
-import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
@@ -18,6 +18,22 @@ plugins {
 val signing = Properties().apply {
     val file = rootProject.file("keystore.properties")
     if (file.exists()) file.inputStream().use { load(it) }
+    val localFile = rootProject.file("local.properties")
+    if (localFile.exists()) localFile.inputStream().use { load(it) }
+
+    val storePath = getProperty("storeFile") ?: getProperty("KEYSTORE_FILE") ?: "hamraj37-release.jks"
+    val storeFile = rootProject.file(storePath)
+    val b64 = getProperty("KEYSTORE_BASE64") ?: System.getenv("KEYSTORE_BASE64")
+
+    if (!storeFile.exists() && !b64.isNullOrBlank()) {
+        runCatching {
+            val cleanB64 = b64.replace("-----BEGIN CERTIFICATE-----", "")
+                .replace("-----END CERTIFICATE-----", "")
+                .replace("\\s+".toRegex(), "")
+            val bytes = Base64.getDecoder().decode(cleanB64)
+            storeFile.writeBytes(bytes)
+        }
+    }
 }
 
 val localProps = Properties().apply {
@@ -121,20 +137,20 @@ android {
     }
 
     signingConfigs {
-        // Both halves have to be there, not just the properties file: it *names*
-        // the keystore rather than containing it, and both are gitignored
-        // separately, so a checkout can easily end up with the one and not the
-        // other. A signing config pointing at a keystore that is not on disk
-        // fails the release build outright at validateSigningRelease — which is
-        // exactly the failure the unsigned fallback above exists to avoid, so
-        // the keystore has to be looked for rather than assumed.
-        val store = signing.getProperty("storeFile")?.let { rootProject.file(it) }
-        if (store != null && store.exists()) {
+        val storePath = signing.getProperty("storeFile")
+            ?: signing.getProperty("KEYSTORE_FILE")
+            ?: "bitchord-release.jks"
+        val store = rootProject.file(storePath)
+        val storePwd = signing.getProperty("storePassword") ?: signing.getProperty("KEYSTORE_PASSWORD")
+        val alias = signing.getProperty("keyAlias") ?: signing.getProperty("KEY_ALIAS")
+        val keyPwd = signing.getProperty("keyPassword") ?: signing.getProperty("KEY_PASSWORD")
+
+        if (store.exists() && storePwd != null && alias != null && keyPwd != null) {
             create("release") {
                 storeFile = store
-                storePassword = signing.getProperty("storePassword")
-                keyAlias = signing.getProperty("keyAlias")
-                keyPassword = signing.getProperty("keyPassword")
+                storePassword = storePwd
+                keyAlias = alias
+                keyPassword = keyPwd
             }
         }
     }
@@ -142,6 +158,9 @@ android {
     buildTypes {
         debug {
             if (betaSuffix.isNotEmpty()) versionNameSuffix = "-$betaSuffix"
+            signingConfigs.findByName("release")?.let {
+                signingConfig = it
+            }
         }
         release {
             // Carried here too — see [betaSuffix]. A sideloaded beta is a
